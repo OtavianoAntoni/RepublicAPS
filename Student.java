@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Student {
     //global attribute objects for object instance
+    protected byte idSt = 0;
     protected String name;
     protected String email;
     protected float income;
@@ -15,6 +16,9 @@ public class Student {
 
     //method used from register new Student into the system
     public void registerPerson(String name, String email, float income) {
+        idStudent.add(idSt);
+        idSt += 1;
+
         this.name = name;
         nameList.add(name);
 
