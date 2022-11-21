@@ -46,7 +46,7 @@ public class FileMang extends Student {
         }
     }
 
-    public void vexpensesAdd(String name, String description, float value, String priority) throws IOException {
+    public void vexpensesAdd(String name, String description, float value, byte priority) throws IOException {
         for (int i = 0; i <= ve.nameList.size(); i++) {
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(expath, true))) {
                 bw.write(ve.idList.get(i));

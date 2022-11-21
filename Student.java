@@ -7,6 +7,7 @@ public class Student {
     protected String name;
     protected String email;
     protected float income;
+
     //array list containing new Students data
     List <Byte> idStudent = new ArrayList<>();
     List <String> nameList = new ArrayList<>();
@@ -17,16 +18,11 @@ public class Student {
     //method used from register new Student into the system
     public void registerPerson(String name, String email, float income) {
         idStudent.add(idSt);
-        idSt += 1;
-
-        this.name = name;
         nameList.add(name);
-
-        this.email = email;
         emailList.add(email);
-
-        this.income = income;
         incomeList.add(income);
+        emergencyDeposit(income);
+        idSt += 1;
     }
 
     public void deleteAccount(byte idStudent) {
@@ -40,7 +36,15 @@ public class Student {
         this.idStudent.remove(position);
     }
 
-    public void emergencyDeposit(){
+    public void emergencyDeposit(float income){
         taxStudent.add((float) (income * 0.05));
+    }
+
+    public float totalDeposit() {
+        float total = 0;
+        for (int r = 0; r <= taxStudent.size(); r++) {
+            total += taxStudent.get(r);
+        }
+        return total;
     }
 }
