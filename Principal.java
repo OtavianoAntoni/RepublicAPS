@@ -7,27 +7,22 @@ import java.util.Scanner;
 
 public class Principal {
 	
-	static byte menu() {
-		try (Scanner scan = new Scanner(System.in)) {
-			byte opcao;
-			System.out.println("\n********************************************************");
-			System.out.println("**     DIGITE O NÚMERO DA OPERAÇÃO DESEJADA      **");
-			System.out.println("********************************************************");
-			System.out.println("*                1 - Cadastrar Aluno                   *");
-			System.out.println("*                2 - Cadastrar Despesa Fixa            *");
-			System.out.println("*                3 - Cadastrar Despesa Variada         *");
-			System.out.println("*                4 - Listar Alunos Cadastrados         *");
-			System.out.println("*                5 - Remover Cadastro                  *");
-			System.out.println("*                6 - Reserva de Emergência             *");
-			System.out.println("*                7 - Valor que Cada Morador Deve Pagar *");
-			System.out.println("*                8 - Sair                              *");
-			System.out.println("********************************************************");
-			System.out.print("-> ");
-			opcao = scan.nextByte();
-			return opcao;
-		}
+	static void menu() {
+		System.out.println("\n********************************************************");
+		System.out.println("**       DIGITE O NÚMERO DA OPERAÇÃO DESEJADA         **");
+		System.out.println("********************************************************");
+		System.out.println("*      1 - Cadastrar Aluno                   *");
+		System.out.println("*      2 - Cadastrar Despesa Fixa            *");
+		System.out.println("*      3 - Cadastrar Despesa Variada         *");
+		System.out.println("*      4 - Listar Alunos Cadastrados         *");
+		System.out.println("*      5 - Remover Cadastro                  *");
+		System.out.println("*      6 - Reserva de Emergência             *");
+		System.out.println("*      7 - Valor que Cada Morador Deve Pagar *");
+		System.out.println("*      8 - Sair                              *");
+		System.out.println("********************************************************");
+		System.out.print("-> ");
 	}
-
+	
 	public static void main(String[] args) throws IOException {
 		/*
 		public static Boolean apresentacao(boolean d) {
@@ -43,28 +38,31 @@ public class Principal {
 		
 		Scanner scan = new Scanner(System.in);
 		Student student = new Student();
-		FixedExpense fe = new FixedExpense();
 		VariableExpense ve = new VariableExpense();
+		FixedExpense fe = new FixedExpense();
 		String ename, description, payday;
-		float value;
+		float value, reserves = 0,pay = 0;
+		int select = 0, fim = 0, i = 0;
 		byte prior;	
-		int fim = 0;
-		int i = 0;
-		float reserves = 0;
-		float pay = 0;
-
+		
+		
+		
 		do {
-			switch (menu()) {
+			menu();
+			select = scan.nextInt();
+			scan.nextLine();
+
+			switch (select) {
 				case 1:
 				String name, mail;
 				float income;
 				
 				System.out.println("|||CADASTRAR ALUNO|||");
-				System.out.println("Nome: ");
+				System.out.print("Nome: ");
 				name =  scan.nextLine();
-				System.out.println("Email: ");
+				System.out.print("Email: ");
 				mail = scan.nextLine();
-				System.out.println("Renda: ");
+				System.out.print("Renda: ");
 				income = scan.nextFloat();
 				
 				student.registerPerson(name, mail, income);
@@ -79,13 +77,13 @@ public class Principal {
 				
 				System.out.println("|||CADASTRAR DESPESA FIXA|||");
 				
-				System.out.println("Nome da Despesa: ");
+				System.out.print("Nome da Despesa: ");
 				ename =  scan.nextLine();
-				System.out.println("Descrição da Despesa: ");
+				System.out.print("Descrição da Despesa: ");
 				description = scan.nextLine();
-				System.out.println("Valor da Despesa:");
+				System.out.print("Valor da Despesa:");
 				value = scan.nextFloat();
-				System.out.println("Data do pagamento: ");
+				System.out.print("Data do pagamento: ");
 				payday = scan.nextLine();
 				
 				fe.registerExpense(ename, description, value, payday);
@@ -98,13 +96,13 @@ public class Principal {
 				case 3:
 				System.out.println("|||CADASTRAR DESPESA VARIADA|||");
 				
-				System.out.println("Nome da Despesa: ");
+				System.out.print("Nome da Despesa: ");
 				ename =  scan.nextLine();
-				System.out.println("Descrição da Despesa: ");
+				System.out.print("Descrição da Despesa: ");
 				description = scan.nextLine();
-				System.out.println("Valor da Despesa:");
+				System.out.print("Valor da Despesa:");
 				value = scan.nextFloat();
-				System.out.println("Digite a prioridade da despesa [5(prioridade máxima) a 1[pode esperar]: ");
+				System.out.print("Digite a prioridade da despesa [5(prioridade máxima) a 1[pode esperar]: ");
 				prior = scan.nextByte();
 				
 				ve.registerExpense(ename, description, value, prior);
@@ -136,11 +134,11 @@ public class Principal {
 				
 				//prints the list containing information about student name and contribution
 				for (int s = 0; s < student.taxStudent.size(); s++) {
-					System.out.printf("Nome do aluno: %s \nValor da contribuição: %f"
+					System.out.printf("Nome do aluno: %s \nValor da contribuição: R$ %.2f\n"
 					, student.nameList.get(s), student.taxStudent.get(s));
 				}
 				
-				System.out.println("Total de Reserva de Emergência = " + student.totalDeposit());
+				System.out.println("Total de Reserva de Emergência: R$ %.2f" + student.totalDeposit());
 				fim = 6;
 				break;
 				
@@ -161,6 +159,4 @@ public class Principal {
 		} while (fim < 8);
 		scan.close();
 	}
-	}
-	
-	
+}

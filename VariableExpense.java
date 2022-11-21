@@ -7,7 +7,7 @@ public class VariableExpense extends Expense{
     //private byte priority;
     List <Byte> priorityList = new ArrayList<>();
 
-    FileMang fg = new FileMang();
+    //FileMang fg = new FileMang();
 
     public void registerExpense(String name, String description, float value, byte priority) throws IOException {
         nameList.add(name);
@@ -15,7 +15,7 @@ public class VariableExpense extends Expense{
         nameList.add(description);
         priorityList.add(priority);
         idExp += 1;
-        fg.vexpensesAdd(name, description, value, priority);
+        //fg.vexpensesAdd(name, description, value, priority);
     }
 
     public float totalExpensesV() {

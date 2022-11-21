@@ -42,7 +42,7 @@ public class Student {
 
     public float totalDeposit() {
         float total = 0;
-        for (int r = 0; r <= taxStudent.size(); r++) {
+        for (int r = 0; r < taxStudent.size(); r++) {
             total += taxStudent.get(r);
         }
         return total;

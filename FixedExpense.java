@@ -6,7 +6,7 @@ public class FixedExpense extends Expense {
     //private String payday;
     List <String> paydayList = new ArrayList<>();
 
-    FileMang fg = new FileMang();
+    //FileMang fg = new FileMang();
 
     public void registerExpense(String name, String description, float value, String payday) throws IOException {
         idList.add(idExp);
@@ -15,7 +15,7 @@ public class FixedExpense extends Expense {
         descriptionList.add(description);
         paydayList.add(payday);
         idExp += 1;
-        fg.fiexpensesAdd(name, description, value, payday);
+        //fg.fiexpensesAdd(name, description, value, payday);
     }
 
     public float totalExpensesF() {
