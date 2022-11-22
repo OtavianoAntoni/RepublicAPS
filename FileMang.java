@@ -5,21 +5,18 @@ import java.io.IOException;
 public class FileMang extends Student {
     FixedExpense fe = new FixedExpense();
     VariableExpense ve = new VariableExpense();
-    String stdpath = "/home/Documentos/summary.txt";
-    String expath = "/home/Documentos/summary-expenses.txt";
+    String stdpath = "/home/otaviano/Documentos/summary.txt";
+    String expath = "/home/otaviano/Documentos/summary-expenses.txt";
 
-    public void studentsAdd() throws IOException {
+    public void studentsAdd(String name, String email, float income) throws IOException {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(stdpath, true))) {
-            bw.write((byte) idSt);
-            bw.newLine();
-
             bw.write(name);
             bw.newLine();
 
             bw.write(email);
             bw.newLine();
 
-            bw.write((byte) income);
+            bw.write(String.valueOf(income));
             bw.newLine();
 
         } catch (IOException e) {
@@ -30,16 +27,15 @@ public class FileMang extends Student {
     public void fiexpensesAdd(String name, String description, float value, String payday) throws IOException {
         for (int i = 0; i <= fe.nameList.size(); i++) {
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(expath, true))) {
-                bw.write(fe.idList.get(i));
+                bw.write(name);
                 bw.newLine();
-                bw.write(fe.nameList.get(i));
+                bw.write(description);
                 bw.newLine();
-                bw.write(String.valueOf(fe.valueList.get(i)));
+                bw.write(String.valueOf(value));
                 bw.newLine();
-                bw.write(fe.descriptionList.get(i));
+                bw.write(payday);
                 bw.newLine();
-                bw.write(fe.paydayList.get(i));
-                bw.newLine();
+                bw.write("-----");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -47,18 +43,17 @@ public class FileMang extends Student {
     }
 
     public void vexpensesAdd(String name, String description, float value, byte priority) throws IOException {
-        for (int i = 0; i <= ve.nameList.size(); i++) {
+        for (int i = 0; i < ve.nameList.size(); i++) {
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(expath, true))) {
-                bw.write(ve.idList.get(i));
+                bw.write(name);
                 bw.newLine();
-                bw.write(ve.nameList.get(i));
+                bw.write(description);
                 bw.newLine();
-                bw.write(String.valueOf(ve.valueList.get(i)));
+                bw.write(String.valueOf(value));
                 bw.newLine();
-                bw.write(ve.descriptionList.get(i));
+                bw.write(priority);
                 bw.newLine();
-                bw.write(ve.priorityList.get(i));
-                bw.newLine();
+                bw.write("-----");
             } catch (IOException e) {
                 e.printStackTrace();
             }
